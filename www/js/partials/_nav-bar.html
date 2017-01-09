@@ -1,0 +1,14 @@
+<div class="nav-placeholder">
+	<nav id="nav" class="nav-bar">
+		<ul>
+			<li class="pointer"
+				ng-repeat="link in navList"
+				ng-class="{
+					'selected': link.route === currentRoute.name
+				}"
+				ng-click="onNavClick( link )">
+					{{ link.text }}
+			</li>
+		</ul>
+	</nav>
+</div>

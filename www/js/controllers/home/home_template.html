@@ -1,0 +1,61 @@
+<div id="content" class="hidden">
+	<div class="mountains-wrapper sky">
+		<div class="mountains-container">
+			<div id="mountain1" class="mountain"></div>
+			<div id="mountain2" class="mountain"></div>
+			<div id="mountain3" class="mountain"></div>
+		</div>
+	</div>
+	<!-- <div id="gondola"></div> -->
+	<div id="{{ navList[0].id }}" class="banner">
+		<h1 class="home-title">
+			<span id="paige">Paige</span>
+			<br/ >
+				<span id="and">&</span>
+			<br/ >
+			<span id="jared">Jared</span>
+		</h1>
+	</div>
+	<div id="fixed-bg" class="background-image"
+		ng-style="{
+			'background-image': currentBG
+		}"></div>
+	<div ng-include="'./js/partials/_nav-bar.html'"></div>
+	<div class="screen-size {{ link.id }}-wrapper background-image background-alternate"
+		ng-repeat="link in navList.slice( 1 ) track by $index">
+		<div id="{{ link.id }}">
+			<ng-include	src="'./js/partials/_'+ link.partial +'.html'"
+				ng-class="{
+					'current-panel': currentPanel - 1 === $index
+				}" />
+		</div>
+	</div>
+	<footer></footer>
+</div> <!-- end content -->
+<!-- modal -->
+<div id="pw-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Please enter the password</h4>
+      </div>
+      <form ng-submit="onPasswordEnter( password )">
+	      <div class="modal-body">
+	      	<label>Password:
+	      		<input ng-model="password" type="text" name="" />
+	      	</label>
+		      <div class="alert alert-danger hidden" role="alert">
+					  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="false"></span>
+					  <span class="sr-only">Error:</span>
+					  Enter the correct password
+					</div>
+	      </div>
+	      <div class="modal-footer">
+	        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+	        <button type="submit" class="btn btn-primary">Enter</button>
+	      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
