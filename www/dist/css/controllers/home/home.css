@@ -363,6 +363,16 @@
 }
 
 /* line 285, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+.map-overlay {
+  background: transparent;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+/* line 292, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 #fixed-bg {
   position: fixed;
   z-index: -2;
@@ -373,65 +383,87 @@
   background-image: url("../../../../assets/images/bg-2.jpg");
 }
 
-/* line 295, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 302, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .background-image {
   background: center no-repeat;
   background-size: cover;
 }
 
-/* line 300, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 307, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .hello-wrapper {
   background-image: url("../../../../assets/images/bg-1.jpg");
 }
 
-/* line 304, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 311, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .when-where-wrapper {
   background-image: url("../../../../assets/images/bg-2.jpg");
   line-height: 1.2;
 }
 
-/* line 309, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 314, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+.when-where-wrapper .map-overlay {
+  width: 300px;
+  height: 150px;
+  /* your iframe height */
+  top: 150px;
+  /* your iframe height */
+  margin-top: -150px;
+  /* your iframe height */
+}
+
+/* line 322, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .stay-wrapper {
   background-image: url("../../../../assets/images/bg-3.jpg");
 }
 
-/* line 311, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 324, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .stay-wrapper .info {
   padding: 40px;
 }
 
-/* line 316, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 329, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .irvine-wrapper {
   background-image: url("../../../../assets/images/bg-4.jpg");
 }
 
-/* line 320, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 331, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+.irvine-wrapper .map-overlay {
+  width: 400px;
+  height: 200px;
+  /* your iframe height */
+  top: 200px;
+  /* your iframe height */
+  margin-top: -200px;
+  /* your iframe height */
+}
+
+/* line 339, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .journey-wrapper {
   background-image: url("../../../../assets/images/bg-5.jpg");
 }
 
-/* line 324, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 343, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .registry-wrapper {
   background-image: url("../../../../assets/images/bg-6.jpg");
 }
 
-/* line 328, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 347, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .rsvp-wrapper {
   background-image: url("../../../../assets/images/bg-7.jpg");
 }
 
-/* line 332, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 351, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .background-alternate:nth-child(2n) {
   background-image: none !important;
 }
 
-/* line 337, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 356, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .screen-size {
   width: 100vw;
   height: 92vh;
 }
 
-/* line 342, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 361, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .no-height {
   height: auto;
 }

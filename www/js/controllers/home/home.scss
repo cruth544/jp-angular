@@ -282,6 +282,13 @@
 	}
 }
 
+.map-overlay {
+	background: transparent;
+	position: relative;
+	left: 50%;
+	transform: translateX( -50% );
+}
+
 #fixed-bg {
 	position: fixed;
 	z-index: -2;
@@ -304,6 +311,12 @@
 .when-where-wrapper {
 	background-image: url( '../../../../assets/images/bg-2.jpg' );
 	line-height: 1.2;
+	.map-overlay {
+		width: 300px;
+		height: 150px; /* your iframe height */
+		top: 150px;  /* your iframe height */
+		margin-top: -150px;  /* your iframe height */
+	}
 }
 
 .stay-wrapper {
@@ -315,6 +328,12 @@
 
 .irvine-wrapper {
 	background-image: url( '../../../../assets/images/bg-4.jpg' );
+	.map-overlay {
+		width: 400px;
+		height: 200px; /* your iframe height */
+		top: 200px;  /* your iframe height */
+		margin-top: -200px;  /* your iframe height */
+	}
 }
 
 .journey-wrapper {

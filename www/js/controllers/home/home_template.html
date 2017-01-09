@@ -34,28 +34,28 @@
 </div> <!-- end content -->
 <!-- modal -->
 <div id="pw-modal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Please enter the password</h4>
-      </div>
-      <form ng-submit="onPasswordEnter( password )">
-	      <div class="modal-body">
-	      	<label>Password:
-	      		<input ng-model="password" type="text" name="" />
-	      	</label>
-		      <div class="alert alert-danger hidden" role="alert">
-					  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="false"></span>
-					  <span class="sr-only">Error:</span>
-					  Enter the correct password
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Please enter the password</h4>
+			</div>
+			<form ng-submit="onPasswordEnter( password )">
+				<div class="modal-body">
+					<label>Password:
+						<input ng-model="password" type="text" name="" />
+					</label>
+					<div class="alert alert-danger hidden" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="false"></span>
+						<span class="sr-only">Error:</span>
+						Enter the correct password
 					</div>
-	      </div>
-	      <div class="modal-footer">
-	        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-	        <button type="submit" class="btn btn-primary">Enter</button>
-	      </div>
-      </form>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+					<button type="submit" class="btn btn-primary">Enter</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

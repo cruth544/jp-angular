@@ -15,7 +15,7 @@
 		$scope.enteredPassword;
 		if ( !$scope.enteredPassword ) {
 			$( '#pw-modal' ).on( 'shown.bs.modal', function () {
-			  $( '#pw-modal' ).focus()
+				$( '#pw-modal' ).focus()
 			})
 
 			$( '#pw-modal' ).modal( 'show' )
@@ -99,20 +99,18 @@
 			},
 		]
 
-  	$scope.currentRoute = $state.current.name
-  	$scope.currentPanel = _.findIndex( $scope.navList, { route: $scope.currentRoute } )
-  	$scope.currentBG = "url("+ $scope.navList[2].bg +")"
-  	$scope.flipWhereToStay = false
+		$scope.currentRoute = $state.current.name
+		$scope.currentPanel = _.findIndex( $scope.navList, { route: $scope.currentRoute } )
+		$scope.currentBG = "url("+ $scope.navList[2].bg +")"
+		$scope.flipWhereToStay = false
 
 
 		/* Methods */
 		$scope.scrollTo = function ( id ) {
 			var navbar = $( '#nav' )
-			if ( id !== $scope.navList[0].route ) {
-				$( 'html, body' ).animate({
-	        scrollTop: $( '#'+ id ).offset().top - navbar.height()
-		    }, 1500 );
-			}
+			$( 'html, body' ).animate({
+				scrollTop: $( '#'+ id ).offset().top - navbar.height()
+			}, 1500 );
 		}
 
 		$scope.onNavClick = function ( link ) {
@@ -128,39 +126,39 @@
 		}
 
 		$rootScope.$on('$viewContentLoaded', function() {
-	  	$state.go( 'home' )
+			$state.go( 'home' )
 		})
 
 		/* Watch */
 		$rootScope.$on( '$stateChangeStart',
 		function( event, toState, toParams, fromState, fromParams ) {
-	  	$scope.currentRoute = toState
-	  	var nextIndex = _.findIndex( $scope.navList, {
-	  		route: toState.name
-	  	})
-	  	var direction = nextIndex - $scope.currentPanel
-	  	$scope.currentPanel = nextIndex
+			$scope.currentRoute = toState
+			var nextIndex = _.findIndex( $scope.navList, {
+				route: toState.name
+			})
+			var direction = nextIndex - $scope.currentPanel
+			$scope.currentPanel = nextIndex
 			var i = $scope.currentPanel
-	  	if ( direction === 1 ) {
-	  		// moving down the page
-		  	if ( $scope.currentPanel % 2 ) {
-		  		try {
-		  			i = i + 1
-		  			if ( i >= $scope.navList.length ) {
-		  				i = $scope.navList.length - 1
-		  			}
-			  		$scope.currentBG = "url("+ $scope.navList[i].bg +")"
-		  		} catch ( e ) {}
-		  	}
-	  	} else {
-	  		// moving up the page
-	  		if ( $scope.currentPanel
-	  				&& $scope.currentPanel % 2 === 0 ) {
-		  		try {
-			  		$scope.currentBG = "url("+ $scope.navList[i].bg +")"
-		  		} catch ( e ) {}
-		  	}
-	  	}
+			if ( direction === 1 ) {
+				// moving down the page
+				if ( $scope.currentPanel % 2 ) {
+					try {
+						i = i + 1
+						if ( i >= $scope.navList.length ) {
+							i = $scope.navList.length - 1
+						}
+						$scope.currentBG = "url("+ $scope.navList[i].bg +")"
+					} catch ( e ) {}
+				}
+			} else {
+				// moving up the page
+				if ( $scope.currentPanel
+						&& $scope.currentPanel % 2 === 0 ) {
+					try {
+						$scope.currentBG = "url("+ $scope.navList[i].bg +")"
+					} catch ( e ) {}
+				}
+			}
 		})
 
 		/* Event Listeners */
