@@ -1,13 +1,128 @@
 <div class="banner">
-	<div class="center-content">
-		<div class="content text-center soft-border">
-			<div class="info">
-				<h4>WHERE TO STAY</h4>
-				<p>
-					We have negotiated a number of rooms at The Mammoth Mountain Inn for very affordable rates.  Due to the location of the wedding, we have chosen The Mammoth Mountain Inn as our preferred venue as it is the closest hotel to the venue.  The hotel is adjacent to the gondola station at Main Lodge where you will be transported to the ceremony and reception venue.  Although we have negotiated rates on a number of rooms, until payment has been put against a room, they will be available to be booked by the public.  Please note that the hotel typically books up far in advance due to its popular location.   We recommend you to book now even if you’re not absolutely sure if you can make it, as the resort offers free cancellation up to 48 hours prior to your arrival.  (Please book soon!) All you have to do is call The Mammoth Mountain Inn at (760) 934-2581 and mention the appropriate booking reference number listed below.<br />
-					For more information, please visit: <a href="//themammothmountaininn.com">Mammoth Mountain</a>
-				</p>
+	<!-- <div class="center-content"> -->
+		<div class="flip-container"
+			ng-class="{
+				'flipped': link.flipped
+			}">
+			<div class="flipper">
+				<div class="front">
+					<div class="content text-center soft-border">
+						<div class="info">
+							<h4>WHERE TO STAY</h4>
+							<p>
+								We have negotiated a number of rooms at The Mammoth Mountain Inn for very affordable rates.  Due to the location of the wedding, we have chosen The Mammoth Mountain Inn as our preferred venue as it is the closest hotel to the venue.  The hotel is adjacent to the gondola station at Main Lodge where you will be transported to the ceremony and reception venue.  Although we have negotiated rates on a number of rooms, until payment has been put against a room, they will be available to be booked by the public.  Please note that the hotel typically books up far in advance due to its popular location.   We recommend you to book now even if you’re not absolutely sure if you can make it, as the resort offers free cancellation up to 48 hours prior to your arrival.  (Please book soon!) All you have to do is call The Mammoth Mountain Inn at (760) 934-2581 and mention the appropriate booking reference number listed below.<br />
+								For more information, please visit: <a href="//themammothmountaininn.com">Mammoth Mountain</a>
+							</p>
+							<a href="" ng-click="onToggleFlip( link )">Click for Hotel Information</a>
+						</div>
+					</div>
+				</div>
+				<div class="back">
+					<div class="content text-center soft-border">
+						<div class="info">
+							<h4>HOTEL INFORMATION</h4>
+
+							<table class="table table-hover table-striped">
+								<thead>
+									<tr>
+										<th>Mammoth Mountain Inn</th>
+										<th>Room Code</th>
+										<th>Max Occ.</th>
+										<th>Nightly Room Rate (Sun-Thur)</th>
+										<th>Nightly Room Rate (Fri-Sat)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="text-left">Standard hotel room with one queen bed</td>
+										<td>MHS1Q2</td>
+										<td>2</td>
+										<td>$119.00</td>
+										<td>$135.00</td>
+									</tr>
+									<tr>
+										<td class="text-left">Standard hotel room with two double beds</td>
+										<td>MHS2D2</td>
+										<td>2</td>
+										<td>$119.00</td>
+										<td>$135.00</td>
+									</tr>
+									<tr>
+										<td class="text-left">Standard hotel room with two queen beds</td>
+										<td>MHS2Q4</td>
+										<td>4</td>
+										<td>$125.00</td>
+										<td>$149.00</td>
+									</tr>
+									<tr>
+										<td class="text-left">Superior hotel room with one king bed</td>
+										<td>MHD1K2</td>
+										<td>2</td>
+										<td>$135.00</td>
+										<td>$175.00</td>
+									</tr>
+									<tr>
+										<td class="text-left">Deluxe loft hotel room with one king bed and one queen bed</td>
+										<td>MHL2K4</td>
+										<td>4</td>
+										<td>$149.00</td>
+										<td>$189.00</td>
+									</tr>
+									<tr>
+										<td class="text-left">One bedroom condominium with one king bed and one queen Murphy bed</td>
+										<td>M1C2K4</td>
+										<td>4</td>
+										<td>$159.00</td>
+										<td>$229.00</td>
+									</tr>
+									<tr>
+										<td class="text-left">Two bedroom condominium with loft with one king bed, two queen beds and three twin beds</td>
+										<td>M2L6K9</td>
+										<td>9</td>
+										<td>$215.00</td>
+										<td>$309.00</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table class="table table-hover table-striped">
+								<thead>
+									<tr>
+										<th>Mammoth Mountain Inn</th>
+										<th>Room Code</th>
+										<th>Max Occ.</th>
+										<th>Nightly Room Rate (Sun-Thur)</th>
+										<th>Nightly Room Rate (Fri-Sat)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="text-left">One Bedroom condominium with one king bed</td>
+										<td>V1C1K4</td>
+										<td>4</td>
+										<td>$179.00</td>
+										<td>$189.00</td>
+									</tr>
+									<tr>
+										<td class="text-left">Two bedroom condominium with one king bed and one queen bed</td>
+										<td>V2C2K6</td>
+										<td>6</td>
+										<td>$239.00</td>
+										<td>$259.00</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<p>PLEASE NOTE:
+								TRANSPORTATION - If you are flying, please note that flights are occasionally canceled traveling to and from Mammoth due to smoke from forest fires and high winds in the Sierras.  If you plan on flying, please be sure to arrive a few days in advance.
+								ELEVATION - Please note that the wedding venue is located at 9,600ft elevation.  If you are susceptible to elevation sickness, please arrive several days earlier in order to acclimate to the elevation.  The center of town is approximately 7,600ft elevation.  Also, please note that the effects of alcohol are accelerated at higher altitudes.  Party safe and responsibly - our event will be heavily photographed :)
+								WEATHER - Temperatures in Mammoth during August generally vary between an average high during the day of 80 degrees and a low of 50 degrees.  Please dress accordingly.
+							</p>
+							<a href="" ng-click="onToggleFlip( link )">Back</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
+	<!-- </div> -->
 </div>

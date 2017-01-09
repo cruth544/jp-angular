@@ -28,7 +28,7 @@
 					return false
 				}
 			}
-			$scope.enteredPassword = true; $( '#pw-modal' ).modal( 'hide' ); $( '#content' ).removeClass( 'hidden' ) }
+			$scope.enteredPassword = true; $('#pw-modal').modal('hide'); $('#content').removeClass('hidden') }
 		window.home = $scope
 		window.state = $state
 		/* Properties */
@@ -38,6 +38,7 @@
 				partial: 'home',
 				text: 'Home',
 				route: 'home',
+				flipped: false,
 				bg: ''
 			},
 			{
@@ -45,6 +46,7 @@
 				partial: 'hello',
 				text: 'Hello!',
 				route: 'home.hello',
+				flipped: false,
 				bg: '../../../../assets/images/bg-1.jpg'
 			},
 			{
@@ -52,6 +54,7 @@
 				partial: 'when-where',
 				text: 'When & Where',
 				route: 'home.when-where',
+				flipped: false,
 				bg: '../../../../assets/images/bg-2.jpg'
 			},
 			{
@@ -59,6 +62,7 @@
 				partial: 'stay',
 				text: 'Where to Stay',
 				route: 'home.stay',
+				flipped: false,
 				bg: '../../../../assets/images/bg-3.jpg'
 			},
 			{
@@ -66,6 +70,7 @@
 				partial: 'irvine',
 				text: 'Irvine Celebration',
 				route: 'home.irvine',
+				flipped: false,
 				bg: '../../../../assets/images/bg-4.jpg'
 			},
 			// {
@@ -73,6 +78,7 @@
 			// 	partial: 'journey',
 			// 	text: 'Our Journey',
 			// 	route: 'home.journey',
+			// 	flipped: false,
 			// 	bg: '../../../../assets/images/bg-5.jpg'
 			// },
 			{
@@ -80,6 +86,7 @@
 				partial: 'registry',
 				text: 'Registry',
 				route: 'home.registry',
+				flipped: false,
 				bg: '../../../../assets/images/bg-6.jpg'
 			},
 			{
@@ -87,6 +94,7 @@
 				partial: 'rsvp',
 				text: 'RSVP',
 				route: 'home.rsvp',
+				flipped: false,
 				bg: '../../../../assets/images/bg-7.jpg'
 			},
 		]
@@ -94,6 +102,7 @@
   	$scope.currentRoute = $state.current.name
   	$scope.currentPanel = _.findIndex( $scope.navList, { route: $scope.currentRoute } )
   	$scope.currentBG = "url("+ $scope.navList[2].bg +")"
+  	$scope.flipWhereToStay = false
 
 
 		/* Methods */
@@ -109,6 +118,13 @@
 		$scope.onNavClick = function ( link ) {
 			// $state.go( link.route )
 			$scope.scrollTo( link.id )
+		}
+
+		$scope.onToggleFlip = function ( link ) {
+			if ( typeof link === 'string' ) {
+				link = _.find( $scope.navList, { id : section } )
+			}
+			link.flipped = !link.flipped
 		}
 
 		$rootScope.$on('$viewContentLoaded', function() {
