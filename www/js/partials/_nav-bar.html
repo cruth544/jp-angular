@@ -2,7 +2,7 @@
 	<nav id="nav" class="nav-bar">
 		<ul>
 			<li class="pointer"
-				ng-repeat="link in navList"
+				ng-repeat="link in navList.slice( 1 )"
 				ng-class="{
 					'selected': link.route === currentRoute.name
 				}"

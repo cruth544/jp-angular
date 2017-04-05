@@ -196,13 +196,14 @@
 	// font-family: 'Pathway Gothic One', sans-serif;
 	// font-family: 'Roboto Condensed', sans-serif;
 
-	h4 {
-		font-size: 4em;
-		font-family: 'Pompiere', cursive;
-	}
 	// transform: translateY( 100% );
 	// transition: all 0.5s ease-out;
 	// transition-property: transform;
+}
+
+h2 {
+	font-size: 4em;
+	font-family: 'Pompiere', cursive;
 }
 
 .text-center {
@@ -296,7 +297,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-image: url( '../../../../assets/images/bg-2.jpg' );
+	background-image: url( '../../../../assets/images/mammoth2.jpg' );
 }
 
 .background-image {
@@ -305,11 +306,11 @@
 }
 
 .hello-wrapper {
-	background-image: url( '../../../../assets/images/bg-1.jpg' );
+	background-image: url( '../../../../assets/images/mammoth1.jpg' );
 }
 
 .when-where-wrapper {
-	background-image: url( '../../../../assets/images/bg-2.jpg' );
+	background-image: url( '../../../../assets/images/mammoth2.jpg' );
 	line-height: 1.2;
 	.map-overlay {
 		width: 300px;
@@ -317,17 +318,20 @@
 		top: 150px;  /* your iframe height */
 		margin-top: -150px;  /* your iframe height */
 	}
+	.info {
+		padding: 60px;
+	}
 }
 
 .stay-wrapper {
-	background-image: url( '../../../../assets/images/bg-3.jpg' );
+	background-image: url( '../../../../assets/images/mammoth3.jpg' );
 	.info {
 		padding: 40px;
 	}
 }
 
 .irvine-wrapper {
-	background-image: url( '../../../../assets/images/bg-4.jpg' );
+	background-image: url( '../../../../assets/images/mammoth4.jpg' );
 	.map-overlay {
 		width: 400px;
 		height: 200px; /* your iframe height */
@@ -337,15 +341,15 @@
 }
 
 .journey-wrapper {
-	background-image: url( '../../../../assets/images/bg-5.jpg' );
+	background-image: url( '../../../../assets/images/mammoth7.jpg' );
 }
 
 .registry-wrapper {
-	background-image: url( '../../../../assets/images/bg-6.jpg' );
+	background-image: url( '../../../../assets/images/mammoth5.jpg' );
 }
 
 .rsvp-wrapper {
-	background-image: url( '../../../../assets/images/bg-7.jpg' );
+	background-image: url( '../../../../assets/images/mammoth6.jpg' );
 }
 
 .background-alternate:nth-child( 2n ) {

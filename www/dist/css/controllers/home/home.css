@@ -269,23 +269,23 @@
   font-size: 1.1em;
 }
 
-/* line 199, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
-.content h4 {
+/* line 204, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+h2 {
   font-size: 4em;
   font-family: 'Pompiere', cursive;
 }
 
-/* line 208, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 209, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .text-center {
   text-align: center;
 }
 
-/* line 212, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 213, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .soft-border {
   border: 20px solid rgba(255, 255, 255, 0.3);
 }
 
-/* line 215, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 216, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .soft-border .info {
   width: 100%;
   height: 100%;
@@ -294,21 +294,21 @@
 }
 
 /* entire container, keeps perspective */
-/* line 225, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 226, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .flip-container {
   height: 100%;
   -webkit-perspective: 1000px;
           perspective: 1000px;
 }
 
-/* line 235, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 236, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .flip-container.flipped .flipper, .flip-container.hover .flipper, .flip-container.flip .flipper {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
 }
 
 /* flip speed goes here */
-/* line 240, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 241, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .flipper {
   height: 100%;
   -webkit-transition: 0.6s;
@@ -319,7 +319,7 @@
 }
 
 /* hide back of pane during swap */
-/* line 248, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 249, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .front, .back {
   position: absolute;
   top: 50%;
@@ -332,7 +332,7 @@
 }
 
 /* front pane, placed above back */
-/* line 257, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 258, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .front {
   z-index: 2;
   /* for firefox 31 */
@@ -341,28 +341,28 @@
 }
 
 /* back, initially hidden pane */
-/* line 264, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 265, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .back {
   -webkit-transform: translateY(-50%) rotateY(180deg);
           transform: translateY(-50%) rotateY(180deg);
 }
 
-/* line 269, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 270, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .back p {
   font-size: 0.7em;
 }
 
-/* line 274, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 275, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .table {
   font-size: 0.8em;
 }
 
-/* line 278, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 279, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .table tbody tr td {
   padding: 4px;
 }
 
-/* line 285, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 286, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .map-overlay {
   background: transparent;
   position: relative;
@@ -372,7 +372,7 @@
           transform: translateX(-50%);
 }
 
-/* line 292, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 293, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 #fixed-bg {
   position: fixed;
   z-index: -2;
@@ -380,27 +380,27 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("../../../../assets/images/bg-2.jpg");
+  background-image: url("../../../../assets/images/mammoth2.jpg");
 }
 
-/* line 302, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 303, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .background-image {
   background: center no-repeat;
   background-size: cover;
 }
 
-/* line 307, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 308, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .hello-wrapper {
-  background-image: url("../../../../assets/images/bg-1.jpg");
+  background-image: url("../../../../assets/images/mammoth1.jpg");
 }
 
-/* line 311, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 312, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .when-where-wrapper {
-  background-image: url("../../../../assets/images/bg-2.jpg");
+  background-image: url("../../../../assets/images/mammoth2.jpg");
   line-height: 1.2;
 }
 
-/* line 314, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 315, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .when-where-wrapper .map-overlay {
   width: 300px;
   height: 150px;
@@ -411,22 +411,27 @@
   /* your iframe height */
 }
 
-/* line 322, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
-.stay-wrapper {
-  background-image: url("../../../../assets/images/bg-3.jpg");
+/* line 321, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+.when-where-wrapper .info {
+  padding: 60px;
 }
 
-/* line 324, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 326, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+.stay-wrapper {
+  background-image: url("../../../../assets/images/mammoth3.jpg");
+}
+
+/* line 328, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .stay-wrapper .info {
   padding: 40px;
 }
 
-/* line 329, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 333, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .irvine-wrapper {
-  background-image: url("../../../../assets/images/bg-4.jpg");
+  background-image: url("../../../../assets/images/mammoth4.jpg");
 }
 
-/* line 331, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 335, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .irvine-wrapper .map-overlay {
   width: 400px;
   height: 200px;
@@ -437,33 +442,33 @@
   /* your iframe height */
 }
 
-/* line 339, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
-.journey-wrapper {
-  background-image: url("../../../../assets/images/bg-5.jpg");
-}
-
 /* line 343, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
-.registry-wrapper {
-  background-image: url("../../../../assets/images/bg-6.jpg");
+.journey-wrapper {
+  background-image: url("../../../../assets/images/mammoth7.jpg");
 }
 
 /* line 347, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
-.rsvp-wrapper {
-  background-image: url("../../../../assets/images/bg-7.jpg");
+.registry-wrapper {
+  background-image: url("../../../../assets/images/mammoth5.jpg");
 }
 
 /* line 351, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+.rsvp-wrapper {
+  background-image: url("../../../../assets/images/mammoth6.jpg");
+}
+
+/* line 355, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .background-alternate:nth-child(2n) {
   background-image: none !important;
 }
 
-/* line 356, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 360, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .screen-size {
   width: 100vw;
   height: 92vh;
 }
 
-/* line 361, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
+/* line 365, /Users/chad8708/Code/wedding/jp-angular/www/js/controllers/home/home.scss */
 .no-height {
   height: auto;
 }

@@ -23,7 +23,7 @@
 
 		$scope.onPasswordEnter = function ( pw ) {
 			for ( var i = 0; i < CryptoJS.AES.decrypt( "U2FsdGVkX1+2/WInR0Os7up3xzqaZlTKVPfoTEIoUrw=", 'paigeandjared' ).words.length; i++) {
-				if ( CryptoJS.AES.decrypt( "U2FsdGVkX1+2/WInR0Os7up3xzqaZlTKVPfoTEIoUrw=", 'paigeandjared' ).words[i] !== CryptoJS.AES.decrypt( CryptoJS.AES.encrypt( pw, 'paigeandjared' ).toString(), 'paigeandjared' ).words[i] ) {
+				if ( CryptoJS.AES.decrypt( "U2FsdGVkX1+2/WInR0Os7up3xzqaZlTKVPfoTEIoUrw=", 'paigeandjared' ).words[i] !== CryptoJS.AES.decrypt( CryptoJS.AES.encrypt( pw.toLowerCase(), 'paigeandjared' ).toString(), 'paigeandjared' ).words[i] ) {
 					$( '#pw-modal alert' ).removeClass( 'hidden' )
 					return false
 				}
@@ -47,7 +47,7 @@
 				text: 'Hello!',
 				route: 'home.hello',
 				flipped: false,
-				bg: '../../../../assets/images/bg-1.jpg'
+				bg: '../../../../assets/images/mammoth1.jpg'
 			},
 			{
 				id: 'when-where',
@@ -55,7 +55,7 @@
 				text: 'When & Where',
 				route: 'home.when-where',
 				flipped: false,
-				bg: '../../../../assets/images/bg-2.jpg'
+				bg: '../../../../assets/images/mammoth2.jpg'
 			},
 			{
 				id: 'stay',
@@ -63,7 +63,7 @@
 				text: 'Where to Stay',
 				route: 'home.stay',
 				flipped: false,
-				bg: '../../../../assets/images/bg-3.jpg'
+				bg: '../../../../assets/images/mammoth3.jpg'
 			},
 			{
 				id: 'irvine',
@@ -71,7 +71,7 @@
 				text: 'Irvine Celebration',
 				route: 'home.irvine',
 				flipped: false,
-				bg: '../../../../assets/images/bg-4.jpg'
+				bg: '../../../../assets/images/mammoth4.jpg'
 			},
 			// {
 			// 	id: 'journey',
@@ -79,7 +79,7 @@
 			// 	text: 'Our Journey',
 			// 	route: 'home.journey',
 			// 	flipped: false,
-			// 	bg: '../../../../assets/images/bg-5.jpg'
+			// 	bg: '../../../../assets/images/mammoth7.jpg'
 			// },
 			{
 				id: 'registry',
@@ -87,7 +87,7 @@
 				text: 'Registry',
 				route: 'home.registry',
 				flipped: false,
-				bg: '../../../../assets/images/bg-6.jpg'
+				bg: '../../../../assets/images/mammoth5.jpg'
 			},
 			{
 				id: 'rsvp',
@@ -95,7 +95,7 @@
 				text: 'RSVP',
 				route: 'home.rsvp',
 				flipped: false,
-				bg: '../../../../assets/images/bg-7.jpg'
+				bg: '../../../../assets/images/mammoth6.jpg'
 			},
 		]
 
@@ -209,6 +209,7 @@
 				paige.style.visibility = 'hidden'
 				and.style.visibility = 'hidden'
 				jared.style.visibility = 'hidden'
+				mountains.opacity = 0
 			}
 
 		})
