@@ -1,0 +1,47 @@
+@import "../../../_globals.scss";
+$dir: '../../../../assets';
+/* $images: $dir + '/images'; */
+$images: $dir + '/images_optimized';
+
+#admin {
+	box-sizing: border-box;
+	padding: 0 10%;
+	width: 100%;
+
+	.admin-banner {
+		h1 {
+			text-align: center;
+			margin: 5%;
+		}
+	}
+
+	.search-box {
+		margin: 12px;
+		width: 26.12%;
+	}
+
+	.table-container {
+	}
+
+	.table {
+	}
+
+	.cell-hover {
+		span {
+			transition: transform 0.1s linear;
+		}
+
+		&:hover {
+			background-color: #f5f5f5;
+			cursor: pointer;
+
+			span {
+				transform: scale(1.25);
+			}
+		}
+	}
+
+	td {
+		text-align: center;
+	}
+}

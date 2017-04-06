@@ -5,6 +5,11 @@
 
 	function MainRouter( $stateProvider, $urlRouterProvider ) {
 		$stateProvider
+			.state( 'admin', {
+				url: '/admin',
+				templateUrl: 'js/controllers/admin/admin_template.html',
+				controller: 'AdminController'
+			})
 			.state( 'home', {
 				url: '/',
 				templateUrl: 'js/controllers/home/home_template.html',

@@ -12,6 +12,11 @@
 	 *	Constants
 	/*/
 	function HomeController( $scope, $rootScope, $state, $anchorScroll, Helper ) {
+		if (/localhost/.test(window.location.href)) {
+			window.home = $scope
+			window.state = $state
+		}
+
 		$scope.enteredPassword;
 		if ( !$scope.enteredPassword ) {
 			$( '#pw-modal' ).on( 'shown.bs.modal', function () {
@@ -29,8 +34,6 @@
 				}
 			}
 			$scope.enteredPassword = true; $('#pw-modal').modal('hide'); $('#content').removeClass('hidden') }
-		window.home = $scope
-		window.state = $state
 		/* Properties */
 		$scope.navList = [
 			{
@@ -212,6 +215,7 @@
 				mountains.opacity = 0
 			}
 
+			requestAnimationFrame( frame )
 		})
 
 		function frame( time ) {

@@ -1,0 +1,74 @@
+<div id="admin">
+	<div class="admin-banner">
+		<h1>Admin Panel</h1>
+	</div>
+	<div class="search-box">
+		<label for="exampleInputEmail1">Search Guest List</label>
+	  <input type="text" class="form-control" placeholder="Search"
+	  	ng-model="searchText">
+	</div>
+	<div class="table-container">
+		<table class="table table-bordered table-hover">
+			<thead>
+				<th class="cell-hover"
+					ng-repeat="head in tableHeaders"
+					ng-click="onHeadClick(head)">
+					<span>{{ head }}</span>
+					<!-- <span ng-class="{ caret: orderBy === head }"></span> -->
+				</th>
+				<th class="cell-hover edit">Edit</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="guest in guestList
+												| filter : searchText
+												| orderBy : orderBy">
+					<td ng-repeat="prop in listProps">
+						{{ getCellValue(guest, prop) }}
+					</td>
+					<td class="cell-hover edit"
+						data-toggle="modal" data-target="#edit-modal"
+						ng-click="onGuestEdit(guest)">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Edit Guest</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form type="submit" ng-submit="onFormSubmit()">
+	        	<div class="form-input"
+	        		ng-repeat="prop in listProps.slice(1) track by $index">
+							<label>{{ tableHeaders[$index + 1] }}</label>
+							<input type="{{ getInputType(prop) }}"
+								class="form-control"
+								ng-if="!getOptions(prop)"
+						  	placeholder="{{ tableHeaders[$index] }}"
+								ng-model="editGuest[prop]" />
+							<select class="form-control"
+								ng-if="getOptions(prop)"
+								ng-options="item as item for item in getOptions(prop) track by $index"
+								ng-model="editGuest[prop]"></select>
+	        	</div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">
+			        	Close
+			        </button>
+			        <button type="submit" class="btn btn-primary">
+			        	Save changes
+			        </button>
+			      </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
