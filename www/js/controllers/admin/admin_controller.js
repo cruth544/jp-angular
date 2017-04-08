@@ -6,8 +6,10 @@
 	/*/
 	 *	Constants
 	/*/
-	// var url = 'http://ec2-54-202-204-95.us-west-2.compute.amazonaws.com'
-	var url = 'http://localhost:8080'
+	var server = /localhost/i.test(window.location.href)
+		? 'http://localhost:8080'
+		: 'http://ec2-54-202-204-95.us-west-2.compute.amazonaws.com'
+	//var server = 'http://localhost:8080'
 	function AdminController( $scope, $rootScope, $state, $anchorScroll, Helper ) {
 		if (/localhost/.test(window.location.href)) {
 			window.admin = $scope
@@ -28,7 +30,8 @@
 			'Unsure',
 			'Dish',
 			'Category',
-			'Address'
+			'Address',
+			'Responded'
 		]
 		$scope.listProps = $scope.tableHeaders.map(function (prop) {
 			return prop.replace(/\s/g, '')
@@ -60,7 +63,7 @@
 			if (prop === '#') {
 				cell = $scope.guestList.indexOf(guest) + 1
 			} else if (/Mammoth|Tanaka\s?Farms|Unsure/i.test(prop)) {
-				cell = guest[prop] ? '√' : '-'
+				cell = guest[prop] ? '\u2713' : '-'
 			} else {
 				cell = guest[prop] || '-'
 			}
@@ -73,6 +76,8 @@
 				type = 'select'
 			} else if (/Mammoth|Tanaka\s?Farms|Unsure/i.test(prop)) {
 				type = 'checkbox'
+			} else if (/Total/i.test(prop)) {
+				type = 'number'
 			} else {
 				type = 'text'
 			}
@@ -85,13 +90,17 @@
 
 		$scope.onGuestEdit = function (guest) {
 			$scope.editGuest = Object.assign({}, guest)
+			$scope.editGuest.Total = Number($scope.editGuest.Total)
 			$scope.editGuestIndex = $scope.guestList.indexOf(guest)
 			console.log(guest)
 		}
 
 		$scope.onFormSubmit = function () {
 			delete $scope.editGuest.$$hashKey
-			$.post(url +'/update_guest', $scope.editGuest).then(
+			if (!!$scope.editGuest['Responded'] === $scope.editGuest['Responded']) {
+				$scope.editGuest['Responded'] = moment(new Date()).format('MM/DD/YYYY hh:mm a')
+			}
+			$.post(server +'/update_guest', $scope.editGuest).then(
 			function (guest) {
 				Object.assign($scope.guestList[$scope.editGuestIndex], guest)
 				$scope.$apply()
@@ -99,11 +108,10 @@
 			})
 		}
 
-		$.get(url +'/get_all_guests').then(
+		$.get(server +'/get_all_guests').then(
 		function (guests) {
-			$scope.guestList = guests
+			$scope.guestList = guests.slice(2)
 			$scope.$apply()
 		})
-
 	}
 })()

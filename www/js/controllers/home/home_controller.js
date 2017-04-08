@@ -3,21 +3,19 @@
 	angular.module( 'jp' )
 		.controller( "HomeController", ['$scope', '$rootScope', '$state', '$anchorScroll', 'Helper', HomeController] )
 
-// opacity: 0;
-// overflow-y: hidden;
-// height: 0;
-
-
 	/*/
 	 *	Constants
 	/*/
+	var server = /localhost/i.test(window.location.href)
+		? 'http://localhost:8080'
+		: 'http://ec2-54-202-204-95.us-west-2.compute.amazonaws.com'
 	function HomeController( $scope, $rootScope, $state, $anchorScroll, Helper ) {
 		if (/localhost/.test(window.location.href)) {
 			window.home = $scope
 			window.state = $state
 		}
 
-		$scope.enteredPassword;
+		$scope.enteredPassword = /localhost/i.test(window.location.href);
 		if ( !$scope.enteredPassword ) {
 			$( '#pw-modal' ).on( 'shown.bs.modal', function () {
 				$( '#pw-modal' ).focus()
@@ -106,6 +104,11 @@
 		$scope.currentPanel = _.findIndex( $scope.navList, { route: $scope.currentRoute } )
 		$scope.currentBG = "url("+ $scope.navList[2].bg +")"
 		$scope.flipWhereToStay = false
+		$scope.rsvpCode = ''
+		$scope.currentRSVP = []
+		$scope.rsvpStep = 0
+		$scope.dishOptions = ['🍖 Beef 🍖', '🐟 Fish 🐟']
+		$scope.submittedDish = false
 
 
 		/* Methods */
@@ -128,8 +131,113 @@
 			link.flipped = !link.flipped
 		}
 
+		/* RSVP */
+
+		$scope.rsvpGoToStep = function (step) {
+			$scope.rsvpStep = step
+		}
+
+		$scope.rsvpNextStep = function () {
+			$scope.rsvpStep++
+		}
+
+		$scope.rsvpResetStep = function () {
+			$scope.rsvpStep = 0
+		}
+
+		// Step 1
+		$scope.findRSVP = function (code, link) {
+			$.get(server +'/get_guests/'+ code).then(function (guests) {
+				console.log(guests)
+				$scope.currentRSVP = guests.map(function (g) {
+					g.Total = Number(g.Total)
+					g.InviteeGuestFirstName = ''
+					g.InviteeGuestLastName = ''
+					g.going = g.responded ? g.going : true
+					return g
+				})
+				if (guests.length) {
+					$scope.rsvpStep++
+					$scope.onToggleFlip(link)
+				}
+				$scope.$apply()
+			})
+		}
+
+		$scope.rsvpSelect = function (response) {
+			if (response) {
+				$scope.rsvpStep++
+			} else {
+				$scope.rsvpStep = -1
+			}
+		}
+
+		// Step 2
+		$scope.rsvpCheckExtras = function () {
+			$scope.allowedExtras = $scope.currentRSVP.filter(function (guest) {
+				if (guest.going) {
+					if (guest.Total < 2) {
+						guest.Guest = null
+					}
+					return guest.Total > 1 && guest.Guest
+				}
+			})
+			$scope.rsvpNextStep()
+			if (!$scope.allowedExtras.length) {
+				$scope.rsvpNextStep()
+			}
+		}
+
+		// Step 3
+		$scope.rsvpEvaluateGuests = function () {
+			$scope.allowedExtras = $scope.allowedExtras.filter(function (guest) {
+				if (guest.Guest.FirstName.length
+						&& guest.Guest.LastName.length) {
+					return guest.Guest.FirstName.length && guest.Guest.LastName.length
+				} else {
+					return guest.Guest = null
+				}
+			})
+			$scope.rsvpNextStep()
+		}
+
+		// Step 4
+		$scope.rsvpEvaluateDishChoice = function () {
+			var allSelectedDishes = Boolean($scope.currentRSVP.length)
+			$scope.currentRSVP.forEach(function (guest) {
+				if (guest.going) {
+					var selected = Boolean(guest.Dish)
+					if (guest.Guest) {
+						selected = Boolean(guest.Dish	&& guest.Guest.Dish)
+					}
+					if (!selected) {
+						allSelectedDishes = false
+					}
+				}
+			})
+			if (allSelectedDishes) {
+				$scope.sendRSVP()
+			} else {
+				$scope.submittedDish = true
+			}
+		}
+
+		// Step 3
+
+		$scope.sendRSVP = function () {
+			var updates = $scope.currentRSVP.map(function (guest) {
+				guest.Responded = moment(new Date()).format('MM/DD/YYYY hh:mm a')
+				return $.post(server +'/update_guest', guest)
+			})
+			Promise.all(updates).then(function (guests) {
+				console.log('submitted', guests)
+				$scope.rsvpNextStep()
+				$scope.$apply()
+			})
+		}
+
 		$rootScope.$on('$viewContentLoaded', function() {
-			$state.go( 'home' )
+			$state.go( $state.current.name )
 		})
 
 		/* Watch */

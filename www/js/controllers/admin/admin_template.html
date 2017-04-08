@@ -19,9 +19,10 @@
 				<th class="cell-hover edit">Edit</th>
 			</thead>
 			<tbody>
-				<tr ng-repeat="guest in guestList
-												| filter : searchText
-												| orderBy : orderBy">
+				<tr class="{{ guest.responded ? 'success' : 'danger' }}"
+					ng-repeat="guest in guestList
+										| filter : searchText
+										| orderBy : orderBy">
 					<td ng-repeat="prop in listProps">
 						{{ getCellValue(guest, prop) }}
 					</td>
@@ -46,24 +47,29 @@
 	      <div class="modal-body">
 	        <form type="submit" ng-submit="onFormSubmit()">
 	        	<div class="form-input"
-	        		ng-repeat="prop in listProps.slice(1) track by $index">
+	        		ng-repeat="prop in listProps.slice(1, -1) track by $index">
 							<label>{{ tableHeaders[$index + 1] }}</label>
 							<input type="{{ getInputType(prop) }}"
 								class="form-control"
 								ng-if="!getOptions(prop)"
-						  	placeholder="{{ tableHeaders[$index] }}"
+						  	placeholder="{{ tableHeaders[$index + 1] }}"
 								ng-model="editGuest[prop]" />
 							<select class="form-control"
 								ng-if="getOptions(prop)"
 								ng-options="item as item for item in getOptions(prop) track by $index"
 								ng-model="editGuest[prop]"></select>
 	        	</div>
+	        	<div class="form-input">
+	        		<label>Set RSVP Time</label>
+	        		<input type="checkbox" class="form-control"
+	        			ng-model="editGuest.Responded">
+	        	</div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">
-			        	Close
+			        	Discard Changes
 			        </button>
 			        <button type="submit" class="btn btn-primary">
-			        	Save changes
+			        	Save Changes
 			        </button>
 			      </div>
 	        </form>
