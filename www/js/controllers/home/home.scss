@@ -366,9 +366,38 @@ h2 {
 		left: 50%;
 	}
 
+	.width-50.margin-auto {
+		.form-inline {
+			input:nth-child(2) {
+				margin-left: -1px;
+			}
+		}
+	}
+
 	.form-control {
 		width: 50%;
 		transform: translateX(50%);
+	}
+
+	.left-label-right-form {
+		position: relative;
+		height: 2em;
+		margin-left: auto;
+		margin-right: auto;
+
+		label, input, select {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		label {
+			left: 0;
+		}
+
+		input, select {
+			right: 0;
+		}
 	}
 
 	select.has-error {
@@ -386,6 +415,68 @@ h2 {
 	height: 92vh;
 }
 
+
+.relative-wrapper {
+	position: relative;
+}
+
+.position-absolute {
+	position: absolute;
+}
+
+.left-0 {
+	left: 0;
+}
+
+.right-0 {
+	right: 0;
+}
+
+.left-align {
+	text-align: left;
+}
+
+.right-align {
+	text-align: right;
+}
+
 .no-height {
 	height: auto;
+}
+
+.height-2em {
+	height: 2em;
+}
+
+.width-50 {
+	width: 50%;
+}
+
+.width-30 {
+	width: 30%;
+}
+
+.width-25 {
+	width: 25%;
+}
+
+.width-20 {
+	width: 20%;
+}
+
+.width-15 {
+	width: 15%;
+}
+
+.text-no-wrap {
+	white-space: nowrap;
+}
+
+.margin-auto {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.margin-top-16px {
+	margin-top: 16px;
 }

@@ -8,7 +8,7 @@
 				<div class="front">
 					<div class="content text-center soft-border">
 						<div class="info">
-							<div class="width-50">
+							<div class="">
 								<h2>RSVP</h2>
 								<p>
 									Find your RSVP
@@ -32,64 +32,77 @@
 				<div class="back">
 					<div class="content text-center soft-border">
 						<div class="info">
-							<div class="width-50">
+							<div class="">
 								<h2>RSVP</h2>
 								<div ng-show="rsvpStep === 1">
 									<label>
 										Your RSVP includes:
 									</label>
-									<div ng-repeat="guest in currentRSVP track by $index">
+									<div class="width-20 text-no-wrap margin-auto left-align"
+										ng-repeat="guest in currentRSVP track by $index">
 										{{ guest.InviteeFirstName +' '+ guest.InviteeLastName }}
 									</div>
-									<label>
-										Will you be joining us on DATE?
+									<label class="margin-top-16px">
+										Does this look correct?
 									</label>
 									<br />
-									<button class="btn btn-success" ng-click="rsvpSelect(true)">Yes</button>
-									<button class="btn btn-danger" ng-click="rsvpSelect(false)">No</button>
+									<button class="btn btn-success" ng-click="rsvpNextStep()">
+										Yes
+									</button>
+									<button class="btn btn-danger" ng-click="rsvpResetStep()">
+										No
+									</button>
 								</div>
 
 								<div ng-show="rsvpStep === 2">
 									<label>
-										Who will be joining us?
+										Who will be joining us on August 19th, 2017?
 									</label>
-									<div ng-repeat="guest in currentRSVP track by $index">
-										<label>
+									<div class="left-label-right-form width-30"
+										ng-repeat="guest in currentRSVP track by $index">
+										<label class="">
 											{{ guest.InviteeFirstName +' '+ guest.InviteeLastName }}
 										</label>
-										<input type="checkbox" name="" ng-model="guest.going">
+										<input type="checkbox" class=""
+											ng-model="guest.Going">
 									</div>
-									<button class="btn btn-success" ng-click="rsvpCheckExtras()">Continue</button>
+									<button class="btn btn-success margin-top-16px"
+										ng-click="rsvpCheckAttendees()">
+										Continue
+									</button>
 								</div>
 
 								<div ng-show="rsvpStep === 3">
 									<label>
 										Who will you be bringing?
 									</label>
-									<div ng-repeat="guest in allowedExtras | filter: { going: true }">
-										<label>
+									<div class="width-50 margin-auto"
+										ng-repeat="guest in allowedExtras | filter: { Going: true }">
+										<label class="margin-top-16px">
 											{{ guest.InviteeFirstName +' '+ guest.InviteeLastName }}
 										</label>
 										<div class="form-group">
-											<label>
-												Guest First Name
-											</label>
-											<input type="text" class="form-control" placeholder="First name" ng-model="guest.Guest.FirstName">
-											<label>
-												Guest Last Name
-											</label>
-											<input type="text" class="form-control" placeholder="Last name" ng-model="guest.Guest.LastName">
+											<div class="form-inline">
+												<label>
+													Guest First Name
+												</label>
+												<input type="text" class="form-control" placeholder="First name" ng-model="guest.Guest.FirstName">
+												<label>
+													Guest Last Name
+												</label>
+												<input type="text" class="form-control" placeholder="Last name" ng-model="guest.Guest.LastName">
+											</div>
 										</div>
 									</div>
-									<button class="btn btn-success" ng-click="rsvpEvaluateGuests()">Continue</button>
+									<button class="btn btn-success margin-top-16px" ng-click="rsvpEvaluateGuests()">Continue</button>
 								</div>
 
 								<div ng-show="rsvpStep === 4">
 									<label>
 										What will everyone be eating?
 									</label>
-									<div ng-repeat="guest in currentRSVP | filter: { going: true }">
-										<div class="form-group">
+									<div ng-repeat="guest in currentRSVP | filter: { Going: true }">
+										<div class="form-group left-label-right-form width-50">
 											<label>
 												{{ guest.InviteeFirstName +' '+ guest.InviteeLastName }}
 											</label>
@@ -97,7 +110,8 @@
 												ng-class="{
 													'has-error': !guest.Dish && submittedDish
 												}"
-												ng-options="dish as dish for dish in dishOptions">
+												ng-options="dish.dish as dish.display for dish in dishOptions">
+												<option value="">Please Choose a Dish</option>
 											</select>
 										</div>
 										<div class="form-group" ng-if="guest.Guest">
@@ -108,12 +122,12 @@
 												ng-class="{
 													'has-error': !guest.Guest.Dish && submittedDish
 												}"
-												ng-options="dish as dish for dish in dishOptions">
+												ng-options="dish.dish as dish.display for dish in dishOptions">
 												<option value="">Please Choose a Dish</option>
 											</select>
 										</div>
 									</div>
-									<button class="btn btn-success" ng-click="rsvpEvaluateDishChoice()">Submit</button>
+									<button class="btn btn-success margin-top-16px" ng-click="rsvpEvaluateDishChoice()">Submit</button>
 								</div>
 
 								<div ng-show="rsvpStep === 5">
@@ -122,7 +136,13 @@
 									</label>
 									<br />
 									<label>
-										We look forward to seeing you on DATE!!
+										We look forward to seeing you on August 19th, 2017!!
+									</label>
+								</div>
+
+								<div ng-show="rsvpStep === 0">
+									<label>
+										Please contact Paige or Jared if there seems to be a mistake.
 									</label>
 								</div>
 
@@ -132,8 +152,8 @@
 									</label>
 								</div>
 								<br />
-								<a href="" ng-click="onToggleFlip( link ); rsvpResetStep()">
-									{{ rsvpStep > 4 ? 'Done' : 'Cancel' }}
+								<a href="" ng-click="rsvpResetStep()">
+									{{ rsvpStep < 0 || rsvpStep > 4 ? 'Done' : 'Cancel' }}
 								</a>
 							</div>
 						</div>

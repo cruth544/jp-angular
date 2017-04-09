@@ -19,7 +19,7 @@
 				<th class="cell-hover edit">Edit</th>
 			</thead>
 			<tbody>
-				<tr class="{{ guest.responded ? 'success' : 'danger' }}"
+				<tr class="{{ guest.Going === 'true' ? 'success' : guest.Going === 'false' ? 'danger' : 'warning' }}"
 					ng-repeat="guest in guestList
 										| filter : searchText
 										| orderBy : orderBy">

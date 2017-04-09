@@ -25,13 +25,23 @@
 		}
 
 		$scope.onPasswordEnter = function ( pw ) {
-			for ( var i = 0; i < CryptoJS.AES.decrypt( "U2FsdGVkX1+2/WInR0Os7up3xzqaZlTKVPfoTEIoUrw=", 'paigeandjared' ).words.length; i++) {
-				if ( CryptoJS.AES.decrypt( "U2FsdGVkX1+2/WInR0Os7up3xzqaZlTKVPfoTEIoUrw=", 'paigeandjared' ).words[i] !== CryptoJS.AES.decrypt( CryptoJS.AES.encrypt( pw.toLowerCase(), 'paigeandjared' ).toString(), 'paigeandjared' ).words[i] ) {
-					$( '#pw-modal alert' ).removeClass( 'hidden' )
-					return false
+			$scope.checkRSVPCode(pw).then(function (guests) {
+				if (!guests.length) {
+					for ( var i = 0; i < CryptoJS.AES.decrypt( "U2FsdGVkX1+2/WInR0Os7up3xzqaZlTKVPfoTEIoUrw=", 'paigeandjared' ).words.length; i++) {
+						if ( CryptoJS.AES.decrypt( "U2FsdGVkX1+2/WInR0Os7up3xzqaZlTKVPfoTEIoUrw=", 'paigeandjared' ).words[i] !== CryptoJS.AES.decrypt( CryptoJS.AES.encrypt( pw.toLowerCase(), 'paigeandjared' ).toString(), 'paigeandjared' ).words[i] ) {
+							$( '#pw-modal alert' ).removeClass( 'hidden' )
+							return false
+						}
+					}
+				} else {
+					$scope.rsvpNextStep()
+					var link = _.find($scope.navList, {id: 'rsvp'})
+					$scope.onToggleFlip(link)
+					$scope.$apply()
 				}
-			}
-			$scope.enteredPassword = true; $('#pw-modal').modal('hide'); $('#content').removeClass('hidden') }
+				$scope.enteredPassword = true; $('#pw-modal').modal('hide'); $('#content').removeClass('hidden')
+			})
+		}
 		/* Properties */
 		$scope.navList = [
 			{
@@ -107,7 +117,10 @@
 		$scope.rsvpCode = ''
 		$scope.currentRSVP = []
 		$scope.rsvpStep = 0
-		$scope.dishOptions = ['🍖 Beef 🍖', '🐟 Fish 🐟']
+		$scope.dishOptions = [
+			{ dish: 'Beef', display: '🍖 Beef 🍖'},
+			{ dish: 'Fish', display: '🐟 Fish 🐟'}
+		]
 		$scope.submittedDish = false
 
 
@@ -125,14 +138,18 @@
 		}
 
 		$scope.onToggleFlip = function ( link ) {
-			if ( typeof link === 'string' ) {
-				link = _.find( $scope.navList, { id : section } )
-			}
-			link.flipped = !link.flipped
+			return new Promise(function (resolve, reject) {
+				if ( typeof link === 'string' ) {
+					link = _.find( $scope.navList, { id : link } )
+				}
+				link.flipped = !link.flipped
+				setTimeout(function () {
+					resolve(link)
+				}, 600) // css transition duration
+			})
 		}
 
-		/* RSVP */
-
+		/* RSVP Start */
 		$scope.rsvpGoToStep = function (step) {
 			$scope.rsvpStep = step
 		}
@@ -142,25 +159,33 @@
 		}
 
 		$scope.rsvpResetStep = function () {
-			$scope.rsvpStep = 0
+			$scope.onToggleFlip('rsvp').then(function (flip) {
+				$scope.rsvpStep = 0
+				$scope.$apply()
+			})
 		}
 
 		// Step 1
-		$scope.findRSVP = function (code, link) {
-			$.get(server +'/get_guests/'+ code).then(function (guests) {
-				console.log(guests)
-				$scope.currentRSVP = guests.map(function (g) {
+		$scope.checkRSVPCode = function (code) {
+			return $.get(server +'/get_guests/'+ code +'/true').then(function (guests) {
+				return $scope.currentRSVP = guests.map(function (g) {
 					g.Total = Number(g.Total)
 					g.InviteeGuestFirstName = ''
 					g.InviteeGuestLastName = ''
-					g.going = g.responded ? g.going : true
+					g.Going = g.responded ? g.Going : true
+					g.Dish = g.Dish || ''
 					return g
 				})
+			})
+		}
+
+		$scope.findRSVP = function (code, link) {
+			$scope.checkRSVPCode(code).then(function (guests) {
 				if (guests.length) {
 					$scope.rsvpStep++
 					$scope.onToggleFlip(link)
+					$scope.$apply()
 				}
-				$scope.$apply()
 			})
 		}
 
@@ -172,10 +197,26 @@
 			}
 		}
 
+		$scope.rsvpCheckAttendees = function () {
+			var attending = $scope.currentRSVP.reduce(function (sum, guest) {
+				if (guest.Going) sum++
+				return sum
+			}, 0)
+			if (attending) {
+				$scope.rsvpCheckExtras()
+			} else {
+				$scope.sendRSVP().then(function (guests) {
+					console.log('submitted', guests)
+					$scope.rsvpGoToStep(-1)
+					$scope.$apply()
+				})
+			}
+		}
+
 		// Step 2
 		$scope.rsvpCheckExtras = function () {
 			$scope.allowedExtras = $scope.currentRSVP.filter(function (guest) {
-				if (guest.going) {
+				if (guest.Going) {
 					if (guest.Total < 2) {
 						guest.Guest = null
 					}
@@ -205,7 +246,7 @@
 		$scope.rsvpEvaluateDishChoice = function () {
 			var allSelectedDishes = Boolean($scope.currentRSVP.length)
 			$scope.currentRSVP.forEach(function (guest) {
-				if (guest.going) {
+				if (guest.Going) {
 					var selected = Boolean(guest.Dish)
 					if (guest.Guest) {
 						selected = Boolean(guest.Dish	&& guest.Guest.Dish)
@@ -216,25 +257,25 @@
 				}
 			})
 			if (allSelectedDishes) {
-				$scope.sendRSVP()
+				$scope.sendRSVP().then(function (guests) {
+					console.log('submitted', guests)
+					$scope.rsvpNextStep()
+					$scope.$apply()
+				})
 			} else {
 				$scope.submittedDish = true
 			}
 		}
 
-		// Step 3
-
+		//
 		$scope.sendRSVP = function () {
 			var updates = $scope.currentRSVP.map(function (guest) {
 				guest.Responded = moment(new Date()).format('MM/DD/YYYY hh:mm a')
 				return $.post(server +'/update_guest', guest)
 			})
-			Promise.all(updates).then(function (guests) {
-				console.log('submitted', guests)
-				$scope.rsvpNextStep()
-				$scope.$apply()
-			})
+			return Promise.all(updates)
 		}
+		/* RSVP End */
 
 		$rootScope.$on('$viewContentLoaded', function() {
 			$state.go( $state.current.name )
