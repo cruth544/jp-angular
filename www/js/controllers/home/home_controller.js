@@ -118,8 +118,8 @@
 		$scope.currentRSVP = []
 		$scope.rsvpStep = 0
 		$scope.dishOptions = [
-			{ dish: 'Beef', display: '🍖 Beef 🍖'},
-			{ dish: 'Fish', display: '🐟 Fish 🐟'}
+			{ dish: 'Beef', display: 'Beef' },
+			{ dish: 'Fish', display: 'Fish' }
 		]
 		$scope.submittedDish = false
 
@@ -220,7 +220,7 @@
 					if (guest.Total < 2) {
 						guest.Guest = null
 					}
-					return guest.Total > 1 && guest.Guest
+					return guest.Total > 1
 				}
 			})
 			$scope.rsvpNextStep()
@@ -342,6 +342,7 @@
 			var mountains = document.getElementsByClassName( 'mountains-wrapper' )[0]
 			if ( scrollTop / 10 > 5
 					&& scrollTop < vh ) {
+				$scope.animate = true
 				paige.style.visibility = 'visible'
 				and.style.visibility = 'visible'
 				jared.style.visibility = 'visible'
@@ -362,6 +363,7 @@
 				and.style.visibility = 'hidden'
 				jared.style.visibility = 'hidden'
 				mountains.opacity = 0
+				$scope.animate = false
 			}
 
 			requestAnimationFrame( frame )
@@ -378,8 +380,7 @@
 
 			mountains.style.opacity = mountains.opacity
 
-			requestAnimationFrame( frame )
+			if ($scope.animate) requestAnimationFrame( frame )
 		}
-		requestAnimationFrame( frame )
 	}
 })()
