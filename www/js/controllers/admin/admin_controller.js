@@ -64,6 +64,14 @@
 				cell = $scope.guestList.indexOf(guest) + 1
 			} else if (/Mammoth|Tanaka\s?Farms|Unsure/i.test(prop)) {
 				cell = guest[prop] ? '\u2713' : '-'
+			} else if (/Guest/i.test(prop)) {
+				cell = guest.Guest[prop.replace(/(\s|Invitee|Guest)/gi, '')] || '-'
+			} else if (/Dish/i.test(prop)) {
+				if (guest.Guest.Dish) {
+					cell = 'Invitee: '+ guest[prop] +'\n\nGuest: '+ guest.Guest.Dish
+				} else {
+					cell = guest[prop] || '-'
+				}
 			} else {
 				cell = guest[prop] || '-'
 			}
@@ -92,6 +100,8 @@
 			$scope.editGuest = Object.assign({}, guest)
 			$scope.editGuest.Total = Number($scope.editGuest.Total)
 			$scope.editGuestIndex = $scope.guestList.indexOf(guest)
+			$scope.editGuest.InviteeGuestFirstName = $scope.editGuest.Guest.FirstName
+			$scope.editGuest.InviteeGuestLastName = $scope.editGuest.Guest.LastName
 			console.log(guest)
 		}
 
@@ -99,6 +109,15 @@
 			delete $scope.editGuest.$$hashKey
 			if (!!$scope.editGuest['Responded'] === $scope.editGuest['Responded']) {
 				$scope.editGuest['Responded'] = moment(new Date()).format('MM/DD/YYYY hh:mm a')
+			}
+			$scope.dishOptions
+			$scope.categoryOptions
+			if ($scope.editGuest.InviteeGuestFirstName
+					&& $scope.editGuest.InviteeGuestLastName) {
+				$scope.editGuest.Guest = {}
+				$scope.editGuest.Guest.FirstName = $scope.editGuest.InviteeGuestFirstName
+				$scope.editGuest.Guest.LastName = $scope.editGuest.InviteeGuestLastName
+				$scope.editGuest.Total = 2
 			}
 			$.post(server +'/update_guest', $scope.editGuest).then(
 			function (guest) {

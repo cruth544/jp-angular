@@ -6,6 +6,10 @@
 		<label for="exampleInputEmail1">Search Guest List</label>
 	  <input type="text" class="form-control" placeholder="Search"
 	  	ng-model="searchText">
+		<div class="filter-boxes">
+			<input type="checkbox" ng-model="MammothFilter">
+			<input type="checkbox" ng-model="TanakaFilter">
+		</div>
 	</div>
 	<div class="table-container">
 		<table class="table table-bordered table-hover">
@@ -56,7 +60,7 @@
 								ng-model="editGuest[prop]" />
 							<select class="form-control"
 								ng-if="getOptions(prop)"
-								ng-options="item as item for item in getOptions(prop) track by $index"
+								ng-options="item as item for item in getOptions(prop)"
 								ng-model="editGuest[prop]"></select>
 	        	</div>
 	        	<div class="form-input">

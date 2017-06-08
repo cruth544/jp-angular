@@ -232,7 +232,8 @@
 		// Step 3
 		$scope.rsvpEvaluateGuests = function () {
 			$scope.allowedExtras = $scope.allowedExtras.filter(function (guest) {
-				if (guest.Guest.FirstName.length
+				if (guest.Guest
+						&& guest.Guest.FirstName.length
 						&& guest.Guest.LastName.length) {
 					return guest.Guest.FirstName.length && guest.Guest.LastName.length
 				} else {
